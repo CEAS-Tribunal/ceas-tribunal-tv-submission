@@ -16,6 +16,7 @@ export const submitData = function(){
         const orgName = document.querySelector('form #organization-name') as HTMLInputElement;
         const description = document.querySelector('form #Description') as HTMLInputElement;
         const ad = document.querySelector('form #ad-file') as HTMLInputElement;
+//      const location = document.querySelector('form #location') as HTMLInputElement;
 
         if(!validateInputFieldData(name, email, orgName, description) && ad.files !== null && ad.files.length > 0){
             // Add file checking
