@@ -15,10 +15,10 @@ export const submitData = function(){
         const email = document.querySelector('form #email') as HTMLInputElement;
         const orgName = document.querySelector('form #organization-name') as HTMLInputElement;
         const description = document.querySelector('form #Description') as HTMLInputElement;
+        const location = document.querySelector('form #location') as HTMLInputElement;
         const ad = document.querySelector('form #ad-file') as HTMLInputElement;
-//      const location = document.querySelector('form #location') as HTMLInputElement;
 
-        if(!validateInputFieldData(name, email, orgName, description) && ad.files !== null && ad.files.length > 0){
+        if(!validateInputFieldData(name, email, orgName, description, location) && ad.files !== null && ad.files.length > 0){
             // Add file checking
             submitButton.style.display = 'none';
             loader.style.display = 'block';
@@ -27,8 +27,21 @@ export const submitData = function(){
                 displayWarning('Please choose a file under 2MB.');
                 submitButton.style.display = 'block';
                 loader.style.display = 'none';
-            } else {
-                const submissionData = new SubmissionData(name.value, email.value, description.value, orgName.value, ad.files[0]);
+            }
+             else {
+                // Get location name
+                let locationName = "";
+                if (location.value === 'baldwin') {
+                    locationName = 'Baldwin Lobby TVs';
+                }
+                else if (location.value === 'rhodes') {
+                    locationName = 'Rhodes Hall TVs';
+                }
+                else if (location.value  === 'both') {
+                    locationName = 'Both';
+                }
+
+                const submissionData = new SubmissionData(name.value, email.value, description.value, orgName.value, locationName, ad.files[0]);
 
                 try {
                     await submissionData.sendData();

@@ -15,6 +15,7 @@ CREATE TABLE `tv_submissions` (
   `org_name` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `description` text NOT NULL,
+  `location` varchar(256) NOT NULL,
   `submission_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

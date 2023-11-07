@@ -6,6 +6,7 @@ export class SubmissionData {
     public email: string;
     public description: string;
     public orgName: string;
+    public location: string;
     public file: File; 
 
     /**
@@ -14,15 +15,17 @@ export class SubmissionData {
      * @param email The email of the person.
      * @param description The description.
      * @param orgName The name of the orgainzation submitting the ad.
+     * @param location The location at which the ad will be displayed at.
      * @param file File being submitted.
      */
     constructor(
-        name: string, email: string, description: string, orgName: string, file: File
+        name: string, email: string, description: string, orgName: string, location:string, file: File
     ) {
         this.name = name;
         this.email = email;
         this.description = description;
         this.orgName = orgName;
+        this.location = location;
         this.file = file;
     }
 
@@ -36,6 +39,7 @@ export class SubmissionData {
         submissionFormData.append('emailText', this.email);
         submissionFormData.append('descriptionText', this.description);
         submissionFormData.append('orgNameText', this.orgName);
+        submissionFormData.append('locationDropdown', this.location);
         submissionFormData.append('imageFile', this.file);
 
         const response = await fetch('../api/send_submission.php', {

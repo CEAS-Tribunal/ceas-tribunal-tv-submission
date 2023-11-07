@@ -1,6 +1,8 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 set_include_path('./includes/');
 require_once('mysqli.php');
 require_once('check_file.php');
@@ -17,6 +19,7 @@ $name = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST["nameText"])))
 $org_name = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST["orgNameText"])));
 $email = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST["emailText"])));
 $description = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST["descriptionText"])));
+$location = mysqli_real_escape_string($mysqli, strip_tags(trim($_POST["locationDropdown"])));
 $slide_image = $_FILES['imageFile'];
 
 //    ~~Validate data~~
@@ -28,7 +31,7 @@ $slide_image_mime_types = array(
 );
 
 //create error message in case a check fails
-if (!isset($result_data)) 
+if (!isset($result_data))
     $result_data = new stdClass();
 $result_data->status = 'error';
 $result_data->message = '';
@@ -60,7 +63,7 @@ if (!preg_match("/^([a-zA-Z0-9]|[- @\.#&!,])*$/", $org_name)) {
 }
 
 //check email
-if(!preg_match('/^[\w\W]+@[\w\W\d]{1,256}$/', $email)) {
+if (!preg_match('/^[\w\W]+@[\w\W\d]{1,256}$/', $email)) {
     $result_data->message = 'Your email, ' . $email . ', is invalid. Please use an email in the following format: <>@<>. '
         . 'Your email is also limited to 256 characters.';
     echo json_encode($result_data);
@@ -76,7 +79,7 @@ $sql = 'SELECT admin_name, admin_email, super_email FROM tv_submission_info';
 $result = $mysqli->query($sql);
 
 if ($result) {
-	while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $admin_name = $row['admin_name'];
         $admin_email = $row['admin_email'];
         $super_email = $row['super_email'];
@@ -91,8 +94,7 @@ if ($admin_email === '' || $admin_name === '' || $super_email === '') {
 }
 
 // Create SQL command/Update table~
-$sql = 'INSERT IGNORE INTO tv_submissions (name, org_name, email, description) ' 
-    . "VALUES ('".$name."','".$org_name."','".$email."','".$description."')";
+$sql = "INSERT IGNORE INTO `tv_submissions` (`name`, `org_name`, `email`, `description`, `location`) VALUES ('" . $name . "','" . $org_name . "','" . $email . "','" . $description . "','" . $location . "')";
 $result = $mysqli->query($sql);
 if (!$result) {
     $result_data->message = 'Error occurred while submitting your information. Please try again. '
@@ -134,6 +136,7 @@ try {
     $email_msg .= "Organization Name: " . $org_name . " \n";
     $email_msg .= "Email: " . $email . " \n";
     $email_msg .= "Description: " . $description . " \n \n";
+    $email_msg .= "Location: " . $location . " \n \n";
     $email_msg .= "The slide submission is attached to this email. ";
     $email_msg .= "Please review this slide and then approve or deny the submission by replying to " . $email . ". \n \n";
     $email_msg .= "Best regards, \n";

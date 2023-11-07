@@ -191,10 +191,9 @@ form select:focus
     border-bottom: 2px solid #8f8f8f;
 }
 
+/*TODO: In the TS files, you need to change the text of this option to black IFF the selected option is Baldwin Lobby TVs, Rhodes TVs, OR Both*/
 select {
-    /*In the TS files, you need to change the text of this option to black IFF the selected option is Baldwin Lobby TVs, Rhodes TVs, OR Both*/
     color: #757575;
-    
 }
 
 form input[type=text].missing:focus,
