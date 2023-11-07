@@ -23,7 +23,7 @@
             </div>
             <div class="intro-info">
                 <p>
-                    You can submit a flyer advertising your event or organization to be displayed on CEAS Tribunal TVs. These TVs are wall-mounted in Baldwin Hall and the Engineering Research Center. Your advertisement will be displayed alongside other promotional materials
+                    You can submit a flyer advertising your event or organization to be displayed on CEAS Tribunal TVs. These TVs are wall-mounted in Baldwin Hall and the 8th floor of Rhodes Hall. Your advertisement will be displayed alongside other promotional materials
                     for 20 seconds and will continue to loop with the rest of the content. The advertisement will be taken down after 2 weeks or when the date of the event expires.
                     If you desire to submit an ad to replace an existing one, you can specify that in the description.
                 </p>
@@ -41,7 +41,7 @@
                     </ul>
                 </figure>
                 <p>
-                    Any advertisement will be reviewed according to the discretion of CEAS Tribunal. Please allow 3 days review your submission. You will receive an email when the submission is approved.
+                    Any advertisement will be reviewed according to the discretion of CEAS Tribunal. Please allow 3 days to review your submission. You will receive an email when the submission is approved.
                 </p>
             </div>
             <form>
@@ -52,6 +52,13 @@
                 <input type="text" id="organization-name" name="organization-name" placeholder="Organization Name" autocomplete="off">
 
                 <input type="text" id="Description" name="Description" placeholder="Description" autocomplete="off">
+
+                <select name="location" id="location">
+                    <option value="default">-- Select Location --</option>
+                    <option value="baldwin">Baldwin Lobby TVs</option>
+                    <option value="rhodes">Rhodes Hall TVs</option>
+                    <option value="both">Both</option>
+                </select>
 
                 <label for="ad-file" class="file-upload">
                     <input type="file" id="ad-file" accept="image/png, image/jpeg">
@@ -80,8 +87,8 @@
     </div>
 
     <footer>
-        <p>University of Cincinnati | © 2020 College of Engineering and Applied Science Tribunal </p>
-        <p>For any questions or comments, contact us at uc.eas.tribunal@gmail.com.</p>
+        <p>University of Cincinnati | © 2023 College of Engineering and Applied Science Tribunal </p>
+        <p>For any questions or comments, contact us at ceastribunaltechnology@gmail.com.</p>
     </footer>
 
     <script src="../build/scripts/submission.bundle.js" type="text/javascript"></script>

@@ -43,7 +43,7 @@ export const displayWarning = function(msg: string) {
  * @returns If the field is missing.
  */
 const checkInputField = function checkForMissingField(field: HTMLInputElement | HTMLOptionElement) {
-    if (field.value === '') {
+    if (field.value === '' || field.value === 'default') {
       field.classList.add('missing');
       return true;
     } else if (field.classList.contains('missing')) {
